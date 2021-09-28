@@ -66,13 +66,13 @@ def upload_excel(files):
     ''' handles processing of excel files '''
     try:
         df = pd.read_excel(files)
-        #print('gh',df)
+        
         vals = df.to_numpy()
-        #print('gh', vals  )
+        
         index = 0
         data = {}
         for item in vals:
-            #print('hi', item)
+            
             data[str(index)] = item
             index += 1
         return data
@@ -81,6 +81,7 @@ def upload_excel(files):
         return None
 
 # log in required
+@login_required 
 def upload_sales(request):
     c = request.user
     form = SalesForm()
@@ -89,7 +90,7 @@ def upload_sales(request):
 
         if form2.is_valid():
             c = upload_excel(request.FILES['excel_file'])
-            print(c)
+            #print(c)
             if c == None: 
                 messages.error(request, 'Error in uploading file, try again')
                 return render(request, 'core/upload_sales.html', {'form': form2})
@@ -108,8 +109,7 @@ def upload_sales(request):
             with transaction.atomic():
                 for item in to_save:
                     item.save()
-            #Staff.objects.bulk_create(to_save)
-            
+                       
                 
 
             return HttpResponseRedirect(reverse('core:home'))
@@ -123,9 +123,8 @@ def upload_sales(request):
 ''' Functions for viewing excel '''
 ## view sales
 class ViewSales(LoginRequiredMixin,ListView):
-    #model = Sales
     queryset = Sales.objects.all().select_related('staff') # query optimisation
-    #paginate_by= 1
+    #paginate_by= 10
     template_name= 'core/viewsales.html'
     context_object_name= 'sales_list'
 
@@ -143,4 +142,4 @@ class TodaySales(LoginRequiredMixin, TodayArchiveView):
     date_field = 'date'
     template_name = 'core/viewsales.html'
     context_object_name = 'sales_list'
-    #print(self.request.user)
+    
