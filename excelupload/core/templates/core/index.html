@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}
+    <title>Document</title>
+    {% endblock title %}
+    
+</head>
+<body>
+    <nav>
+        <a href="{% url 'core:salesupload' %}">Upload report </a>
+        &ensp;
+        <a href="{% url 'core:todaySales' %}">Today's reports</a>
+        &ensp;
+        <a href="{% url 'core:viewsales' %}">View Sales</a>
+    </nav>
+    <hr>
+    {% block content %}
+        <h3> Hi from home </h3>
+    {% endblock content %}
+    
+</body>
+</html>

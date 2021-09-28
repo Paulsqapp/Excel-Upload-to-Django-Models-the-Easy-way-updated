@@ -1,0 +1,12 @@
+{% extends "core/index.html" %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    <p>
+        please confirm deletion of <strong>{{ object }}</strong>
+        from the database
+    </p>
+    <button type="submit">Delete</button>
+</form>
+    <strong>Or <a href="{% url 'core:home' %}">Back home</a></strong>
+{% endblock content %}

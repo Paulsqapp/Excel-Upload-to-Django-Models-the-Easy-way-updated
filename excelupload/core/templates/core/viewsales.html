@@ -1,0 +1,26 @@
+{% extends "core/index.html" %}
+
+{% block content %}
+    <p> to do, query by date</p>
+    <table border="1">
+        <tr>
+            <th>date</th>
+            <th>staff</th>
+            <th>Item Sold</th>
+            <th>quantity</th>
+            <th> unit price </th>
+        </tr>
+    {% for item in sales_list %}
+        <tr>
+            <td>{{ item.date|date:'F j, Y' }}</td>
+            <td>{{ item.staff }}</td>
+            <td>{{ item.item_sold }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unit_price }}</td>
+        </tr>
+    
+    {% empty %}
+        <h4>No sales available</h4>
+    {% endfor %}
+    </table>
+{% endblock content %}
