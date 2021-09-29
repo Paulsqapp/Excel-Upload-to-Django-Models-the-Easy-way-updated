@@ -22,3 +22,5 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]
+
+
