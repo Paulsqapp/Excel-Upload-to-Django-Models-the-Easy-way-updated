@@ -14,3 +14,4 @@ testfixtures==6.17.1
 toml==0.10.2
 pandas
 numpy
+django-debug-toolbar
